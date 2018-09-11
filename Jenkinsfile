@@ -1,22 +1,10 @@
 pipeline {
-  stages {
-    stage('Build') {
-      steps {
-        sh 'npm install'
-      }
+    agent { docker { image 'node:6.3' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'npm --version'
+            }
+        }
     }
-    stage('Test') {
-      steps {
-        input 'Finished using the web site? (Click "Proceed" to continue)'
-      }
-    }
-    stage('Deliver') {
-      steps {
-        input 'Finished using the web site? (Click "Proceed" to continue)'
-      }
-    }
-  }
-  environment {
-    CI = 'true'
-  }
 }
